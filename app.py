@@ -1,4 +1,4 @@
-"""ResearchMate AI: paper-to-presentation and viva assistant."""
+"""ScholarAI: Academic paper-to-presentation and defense assistant."""
 
 import html
 import random
@@ -38,8 +38,8 @@ from researchmate.styles import (
 
 
 st.set_page_config(
-    page_title="ResearchMate AI",
-    page_icon="📚",
+    page_title="ScholarAI Workbench",
+    page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded",
 )
