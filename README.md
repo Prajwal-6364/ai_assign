@@ -1,5 +1,11 @@
 # ScholarAI Studio
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://scholarai-studio.streamlit.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/Prajwal-6364/ai_assign)
+
+> 🚀 **Live Streamlit Application:** **[https://scholarai-studio.streamlit.app](https://scholarai-studio.streamlit.app)**  
+> *(Click above to open and launch the application directly in any browser — no local setup required)*
+
 ScholarAI Studio is an advanced academic research assistant and oral defense intelligence copilot. It streamlines the lifecycle of academic literature ingestion, structured paper synthesis, vector-grounded Q&A, automated widescreen presentation generation, and adaptive mock viva defense examinations.
 
 **Author:** [Prajwal-6364](https://github.com/Prajwal-6364)  
@@ -107,13 +113,37 @@ GEMINI_EMBEDDING_MODEL=models/gemini-embedding-001
 CHROMA_DIR=./chroma_db
 ```
 
-### 4. Run Application
+### 4. Run & Access Application
 
+#### 🌐 Option A: Live Cloud Application (Recommended for Evaluators)
+Open the deployed live application directly without installing anything locally:  
+👉 **[https://scholarai-studio.streamlit.app](https://scholarai-studio.streamlit.app)**
+
+#### 💻 Option B: Run Locally
 ```bash
 streamlit run app.py
 ```
 
-The application will be accessible at `http://localhost:8501`.
+The application will be accessible locally at `http://localhost:8501`.
+
+---
+
+### ☁️ Streamlit Community Cloud Deployment Guide
+
+To deploy or update this application on Streamlit Community Cloud:
+
+1. Visit [share.streamlit.io](https://share.streamlit.io/) and log in with GitHub (`Prajwal-6364`).
+2. Click **Create app** and select:
+   - **Repository:** `Prajwal-6364/ai_assign`
+   - **Branch:** `main`
+   - **Main file path:** `app.py`
+   - **App URL:** `scholarai-studio.streamlit.app` (or custom subdomain)
+3. Under **Advanced settings** -> **Secrets**, add your API key:
+   ```toml
+   GEMINI_API_KEY = "your_gemini_api_key_here"
+   GEMINI_MODEL = "gemini-3.8-flash"
+   ```
+4. Click **Deploy!** — your app is now accessible to evaluators worldwide.
 
 ---
 
