@@ -1,38 +1,56 @@
-# ScholarAI Workbench
+# ScholarAI Studio
 
-ScholarAI Workbench is an academic research assistant designed for paper analysis, presentation deck generation, and defense preparation. It streamlines the workflow of reading research papers, generating presentation slides, and practicing viva questions.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://scholarai-studio.streamlit.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/Prajwal-6364/ai_assign)
 
-## Features & Capabilities
+> 🚀 **Live Streamlit Application:** **[https://scholarai-studio.streamlit.app](https://scholarai-studio.streamlit.app)**  
+> *(Click above to open and launch the application directly in any browser — no local setup required)*
 
-- **Page-Aware PDF Ingestion**: Extracts digital research paper contents while preserving 1-based page coordinates and structure using PyMuPDF.
-- **Deep Academic Synthesis**: Generates structured 6-section research summaries (Problem, Objective, Methodology, Findings, Conclusions, Limitations) and extracts key conceptual frameworks with citations.
-- **Grounded Vector RAG**: Interactive paper Q&A powered by ChromaDB vector store and Gemini embeddings with strict page-referenced citations.
-- **Automated Presentation Deck Builder**: Automatically designs academic PowerPoint presentation slides with customizable styling and an interactive in-browser preview mode.
-- **Interactive Defense (Viva) Simulator**: Adaptive mock examination sessions (up to 6 questions) with real-time rubric-based evaluation, scoring, and improvement feedback.
-- **Study Flashcards & Analytics**: Generates paper-grounded flashcards for revision and tracks viva performance metrics and topic mastery over time.
+ScholarAI Studio is an advanced academic research assistant and oral defense intelligence copilot. It streamlines the lifecycle of academic literature ingestion, structured paper synthesis, vector-grounded Q&A, automated widescreen presentation generation, and adaptive mock viva defense examinations.
+
+**Author:** [Prajwal-6364](https://github.com/Prajwal-6364)  
+**License:** MIT
 
 ---
 
-## Architecture & Technology Stack
+## 🚀 Key Capabilities
+
+- **Page-Aware PDF Ingestion**: Extracts digital research paper contents with PyMuPDF (`fitz`), preserving 1-based page coordinates for strict citation provenance.
+- **6-Dimension Academic Synthesis**: Synthesizes comprehensive research summaries across 6 core academic dimensions:
+  1. *Research Problem*
+  2. *Objective & Hypotheses*
+  3. *Methodology & Data / Participants*
+  4. *Key Empirical Findings*
+  5. *Conclusion & Practical Takeaways*
+  6. *Limitations & Validity Threats*
+- **Key Conceptual Frameworks**: Extracts foundational theoretical ideas and study-specific novel concepts with plain-language explanations, paper significance, and verifiable page citations.
+- **Grounded Vector RAG Q&A**: Interactive question-answering powered by ChromaDB vector store and Gemini embeddings, scoped strictly to the active document with excerpt evidence inspection.
+- **Widescreen Slide Deck Studio**: Automatically generates widescreen (16:9) academic PowerPoint presentations (`.pptx`) with customizable styling, speaker notes, and in-browser interactive presentation mode.
+- **Interactive Defense (Viva) Simulator**: Adaptive 6-turn oral examination agent with real-time rubric-based scoring (1–5 scale), strengths identification, improvement feedback, and page-cited justification.
+- **Revision Flashcards & Learning Analytics**: Generates paper-grounded study flashcards with flip mechanics and records viva performance metrics in a local SQLite database with visual Plotly topic mastery charts.
+
+---
+
+## 🛠️ Architecture & Tech Stack
 
 | Layer | Component | Description |
 | :--- | :--- | :--- |
-| **Frontend / UI** | Streamlit | Responsive dashboard with modern slate & indigo theme |
-| **PDF Extraction** | PyMuPDF (`fitz`) | High-fidelity page-by-page text parsing |
-| **Vector Database** | ChromaDB | Fast local vector storage for embedded chunks |
-| **Language & Embeddings** | Google Gemini API | Text embedding models and generative reasoning |
-| **Orchestration** | LangChain / LCEL | Grounded prompt templates and structured generation |
-| **Slide Generation** | python-pptx | Dynamic PowerPoint deck generation |
-| **Analytics & Metrics** | Pandas & Plotly | Performance tracking and visual mastery charts |
+| **Frontend UI** | Streamlit | Responsive dark glassmorphic dashboard with custom CSS |
+| **PDF Extraction** | PyMuPDF (`fitz`) | High-fidelity page-by-page text parsing with coordinate tracking |
+| **Vector Database** | ChromaDB | Local persistent vector storage for embedded document chunks |
+| **Embeddings & LLM** | Google Gemini API | Text embedding models and generative reasoning |
+| **Orchestration** | LangChain & LCEL | Grounded prompt templates and structured generation pipelines |
+| **Slide Generation** | python-pptx | Dynamic widescreen (16:9) PowerPoint presentation builder |
+| **Analytics & Metrics** | Pandas & Plotly | Performance telemetry, topic mastery charts, and SQLite history |
 
 ---
 
-## Project Structure
+## 📁 Repository Structure
 
 ```text
 ScholarAI/
 ├── app.py                     # Main application entry point and UI controller
-├── researchmate/
+├── scholarai/
 │   ├── analysis.py            # Academic synthesis and concept extraction logic
 │   ├── config.py              # Environment configuration and API settings
 │   ├── flashcards.py          # Study flashcard generation logic
@@ -46,73 +64,93 @@ ScholarAI/
 │   └── viva.py                # Mock defense evaluation and questioning agent
 ├── requirements.txt           # Project dependencies
 ├── .env.example               # Environment variables template
-└── README.md                  # Project documentation and guide
+└── README.md                  # Project documentation
 ```
 
 ---
 
-## Installation & Setup
+## ⚡ Installation & Setup
 
 ### 1. Prerequisites
-- Python 3.10 or newer
+- Python 3.10 or newer (tested on Python 3.12)
 - A Google Gemini API key ([Google AI Studio](https://aistudio.google.com/))
 
 ### 2. Environment Setup
 
-Clone or navigate into your project folder:
-
 ```bash
-# Create a virtual environment
-python -m venv .venv
+# Clone the repository
+git clone https://github.com/Prajwal-6364/ai_assign.git
+cd ai_assign
 
-# Activate virtual environment
+# Create and activate a virtual environment
+python -m venv venv
+
 # Windows (PowerShell):
-.venv\Scripts\Activate.ps1
+venv\Scripts\Activate.ps1
 # Windows (CMD):
-.venv\Scripts\activate.bat
+venv\Scripts\activate.bat
 # Linux / macOS:
-source .venv/bin/activate
+source venv/bin/activate
 
-# Upgrade pip and install dependencies
+# Install dependencies
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
 ### 3. Configure API Key
 
-Copy the example environment file and add your Gemini API key:
+Copy `.env.example` to `.env` and insert your Gemini API key:
 
 ```bash
-# Windows:
 copy .env.example .env
-
-# Linux / macOS:
-cp .env.example .env
 ```
 
-Open `.env` and configure your API key:
+Edit `.env`:
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
-GEMINI_MODEL=gemini-2.5-flash
-GEMINI_EMBEDDING_MODEL=text-embedding-004
+GEMINI_MODEL=gemini-3.8-flash
+GEMINI_EMBEDDING_MODEL=models/gemini-embedding-001
+CHROMA_DIR=./chroma_db
 ```
 
-### 4. Run the Application
+### 4. Run & Access Application
 
-Start the Streamlit application:
+#### 🌐 Option A: Live Cloud Application (Recommended for Evaluators)
+Open the deployed live application directly without installing anything locally:  
+👉 **[https://scholarai-studio.streamlit.app](https://scholarai-studio.streamlit.app)**
 
+#### 💻 Option B: Run Locally
 ```bash
 streamlit run app.py
 ```
 
-Open your browser at `http://localhost:8501`.
+The application will be accessible locally at `http://localhost:8501`.
 
 ---
 
-## Usage Workflow
+### ☁️ Streamlit Community Cloud Deployment Guide
 
-1. **Upload Paper**: Go to the ingestion section and upload any research paper in PDF format.
-2. **Review Synthesis**: Check the structured summary and key conceptual takeaways.
-3. **Ask Questions**: Query the paper using natural language; responses provide precise page citations.
-4. **Export Slides**: Generate PowerPoint slides and review them in the slide presenter.
-5. **Simulate Defense**: Start a viva session to test your knowledge against AI-generated examination questions.
+To deploy or update this application on Streamlit Community Cloud:
+
+1. Visit [share.streamlit.io](https://share.streamlit.io/) and log in with GitHub (`Prajwal-6364`).
+2. Click **Create app** and select:
+   - **Repository:** `Prajwal-6364/ai_assign`
+   - **Branch:** `main`
+   - **Main file path:** `app.py`
+   - **App URL:** `scholarai-studio.streamlit.app` (or custom subdomain)
+3. Under **Advanced settings** -> **Secrets**, add your API key:
+   ```toml
+   GEMINI_API_KEY = "your_gemini_api_key_here"
+   GEMINI_MODEL = "gemini-3.8-flash"
+   ```
+4. Click **Deploy!** — your app is now accessible to evaluators worldwide.
+
+---
+
+## 🔒 Grounding & Provenance Guarantees
+
+ScholarAI enforces strict grounding principles:
+1. **Zero Extrapolation**: Answers, summaries, and slides are restricted to retrieved page context from the active document.
+2. **Page-Coordinate Citations**: Every factual claim cites original 1-based page numbers (e.g. `[Page 4]`).
+3. **Transparent Evidence**: Users can inspect exact source text chunks and passages directly in the UI.
+4. **Isolated Memory**: Switching papers resets session indices to prevent cross-contamination.
